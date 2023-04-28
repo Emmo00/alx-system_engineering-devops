@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# list lines of the processes list containing bash
+# shellcheck disable=SC2009
+# shellcheck disable=SC2086
+pkill -f "7-highlander"
