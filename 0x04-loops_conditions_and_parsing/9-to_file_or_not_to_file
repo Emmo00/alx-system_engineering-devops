@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# checks school file
 file="school"
 if  [ -e $file ]
 then
