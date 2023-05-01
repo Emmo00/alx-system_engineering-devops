@@ -14,7 +14,7 @@ function start_bg_process() {
 
 function stop_bg_process() {
 	pkill -f ./manage_my_process
-	rm /var/run/my_process.pid
+	rm -f /var/run/my_process.pid
 }
 
 case $1 in
