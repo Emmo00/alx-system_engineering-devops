@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# manages process with start restart and stop command
+
+if [ $# -ne 1 ]
+then
+	echo "Usage: manage_my_process {start|stop|restart}"
+fi
+
+function start_bg_process() {
+	./manage_my_process &
+	touch /var/run/my_process.pid
+	pgrep -f ./manage_my_process > /var/run/my_process.pid
+}
+
+function stop_bg_process() {
+	pkill -f ./manage_my_process
+	rm /var/run/my_process.pid
+}
+
+case $1 in
+	"start")
+		start_bg_process
+		echo "manage_my_process started"
+		;;
+	"stop")
+		stop_bg_process
+		echo "manage_my_process stopped"
+		;;
+	"restart")
+		stop_bg_process
+		start_bg_process
+		echo "manage_my_process restarted"
+		;;
+esac
