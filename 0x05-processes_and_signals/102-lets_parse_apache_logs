@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# extracts ip and http status code from server logs
+
+awk '{print $1,$9}' apache-access.log
