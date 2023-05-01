@@ -4,6 +4,7 @@
 if [ $# -ne 1 ]
 then
 	echo "Usage: manage_my_process {start|stop|restart}"
+	exit
 fi
 
 function start_bg_process() {
