@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # order IPs by occurence from server logs
 
-./102-lets_parse_apache_logs | sort | uniq -c | sort -nrk1,1
+awk '{print $1,$9}' apache-access.log | sort | uniq -c | sort -nrk1,1
