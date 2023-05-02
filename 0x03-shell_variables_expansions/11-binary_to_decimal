@@ -1,3 +1,2 @@
 #!/bin/bash
-echo "$((2#${BINARY}))" # Assuming the binary number is passed as the first argument to the script
-
+echo "$((2#${BINARY}))"
