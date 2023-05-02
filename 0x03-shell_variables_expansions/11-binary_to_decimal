@@ -1,0 +1,11 @@
+#!/bin/bash
+dec=0
+pow=1
+while [ "$BINARY" -ne "0" ]
+do
+	r=$(( BINARY % 10 ))
+	dec=$(( dec + r * 2**pow ))
+	(( ++pow ))
+	BINARY=$(( BINARY / 10 ))
+done
+echo $dec
