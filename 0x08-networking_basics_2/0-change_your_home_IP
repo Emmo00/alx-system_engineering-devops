@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# change some some config in the /etc/host file
+
+old="127.0.0.1\tlocalhost"
+new="127.0.0.2\tlocalhost"
+
+sed -i "s/$old/$new/g" /etc/hosts
+
+echo -e "8.8.8.8\tfacebook.com" >> /etc/hosts
