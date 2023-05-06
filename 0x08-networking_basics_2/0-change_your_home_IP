@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 # change some some config in the /etc/host file
 
-old="^127.0.0.1( |\t){1,10}localhost( |\t){0,10}$"
-new="127.0.0.2	localhost"
-
 cp /etc/hosts ~/hosts.new
-sed -i "s/$old/$new/" ~/hosts.new
+sed -i "s/127.0.0.1/127.0.0.2/" ~/hosts.new
+echo -e "8.8.8.8\tfacebook.com" >> ~/hosts.new
 cp -f ~/hosts.new /etc/hosts
 
-echo -e "8.8.8.8\tfacebook.com" >> /etc/hosts
+rm -f ~/hosts.new
