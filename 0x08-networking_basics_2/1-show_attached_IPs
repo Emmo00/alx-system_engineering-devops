@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# show ipv4 on a system
+
+ifconfig -a | sed -n "/addr:(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/p"
