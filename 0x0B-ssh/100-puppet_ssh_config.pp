@@ -1,3 +1,4 @@
+# config ssh on slave
 file { '~/.ssh':
     ensure => directory,
     owner  => 'ubuntu',
