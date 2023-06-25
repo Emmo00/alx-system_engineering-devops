@@ -1,15 +1,5 @@
 # config ssh on slave
-file { '~/.ssh':
-    ensure => directory,
-    owner  => 'ubuntu',
-    group  => 'ubunty',
-    mode   => '0700',
-  }
-
-  file { '~/.ssh/config':
-    ensure  => present,
-    owner   => 'ubuntu',
-    group   => 'ubuntu',
-    mode    => '0600',
-    content => "Host *\n    IdentityFile ~/.ssh/school\n    PasswordAuthentication no\n",
-  }
+exec { 'config ssh':
+    path    => '/usr/bin/',
+    command => "echo -e '#\tIdentityFile ~/.ssh/school' >> /etc/ssh/ssh_config; sed -i 's/#*PasswordAuthentication yes/# PasswordAuthentication no/' /etc/ssh/ssh_config",
+}
