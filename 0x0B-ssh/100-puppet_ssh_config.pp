@@ -5,14 +5,7 @@ file { '~/.ssh':
     mode   => '0700',
   }
 
-  file { '~/.ssh/school':
-    ensure => present,
-    owner  => 'ubuntu',
-    group  => 'ubuntu',
-    mode   => '0600',
-  }
-
-  file { '/etc/ssh/ssh_config':
+  file { '~/.ssh/config':
     ensure  => present,
     owner   => 'ubuntu',
     group   => 'ubuntu',
