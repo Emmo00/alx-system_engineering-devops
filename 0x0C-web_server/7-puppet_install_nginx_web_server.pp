@@ -3,11 +3,6 @@ package { 'nginx':
   ensure => installed,
 }
 
-service { 'nginx':
-  ensure => running,
-  enable => true,
-}
-
 exec { 'add nginx index': 
      path    => '/usr/bin', 
      command => "echo 'Hello World!' | sudo tee /var/www/html/index.html ; ", 
