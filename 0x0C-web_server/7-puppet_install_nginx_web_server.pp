@@ -17,3 +17,7 @@ file { '/var/www/html/index.html':
   ensure  => present,
   content => 'Hello World!',
 }
+exec { 'restart nginx': 
+     path    => '/usr/bin', 
+     command => "sudo service nginx start;", 
+ }
