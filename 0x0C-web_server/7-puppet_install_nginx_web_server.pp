@@ -2,22 +2,18 @@
 package { 'nginx':
   ensure => installed,
 }
+
 service { 'nginx':
   ensure => running,
   enable => true,
 }
-file { 'add permanent redirect':
-  path   => '/etc/nginx/sites-available/default',
-  line   => "server_name _;\nrewrite ^/redirect_me / permanent;",
-  match  => '^server\s*{',
-  ensure => present,
-}
-file { '/var/www/html/index.html':
-  path    => '/var/www/html/index.html',
-  ensure  => present,
-  content => 'Hello World!',
-}
-exec { 'restart nginx': 
+
+exec { 'add nginx index': 
      path    => '/usr/bin', 
-     command => "sudo service nginx start;", 
- }
+     command => "echo 'Hello World!' | sudo tee /var/www/html/index.html ; ", 
+}
+
+exec { 'configure redirect nginx': 
+     path    => '/usr/bin', 
+     command => "sudo sed -i \"s/^[^#].*server_name.*/server_name _;\nrewrite ^/redirect_me / permanent;/\" /etc/nginx/sites-available/default ; sudo service nginx start;", 
+}
