@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# configure nginx server to redirect /redirect_me to another page
+apt upgrade -y
+# Install Nginx
+sudo apt install nginx -y
+
+# Create a configuration file for the redirect
+sed -i "s/^[^#].*server_name.*/server_name _;\nrewrite ^\/redirect_me \/ permanent;/" /etc/nginx/sites-available/default
+echo "Ceci n'est pas une page" > /var/www/html/error404.html
+sed -i '/^server\s*{/a \    error_page 404 /error404.html;\n' /etc/nginx/sites-available/default
+# Restart Nginx
+service nginx restart
