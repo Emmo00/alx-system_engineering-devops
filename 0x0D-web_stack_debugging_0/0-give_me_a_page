@@ -1,1 +1,3 @@
+#!/usr/bin/env bash
+# debug docker
 docker run -p 80:8080
