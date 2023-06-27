@@ -9,5 +9,5 @@ else
 	ip=$2
 	username=$3
 	sshkeypath=$4
-	scp -o StrictHostKeyChecking=no -i $sshkeypath $filepath $username@$ip:~/
+	scp -o StrictHostKeyChecking=no -i "$sshkeypath" "$filepath" "$username"@"$ip":~/
 fi
