@@ -10,5 +10,5 @@ exec { 'add nginx index':
 
 exec { 'configure redirect nginx': 
      path    => '/usr/bin', 
-     command => "sudo sed -i \"s/^[^#].*server_name.*/server_name _;\nrewrite ^/redirect_me / permanent;/\" /etc/nginx/sites-available/default ; sudo service nginx start;", 
+     command => "sudo sed -i \"s/^[^#].*server_name.*/server_name _;\nrewrite ^\/redirect_me \/ permanent;/\" /etc/nginx/sites-available/default ; sudo service nginx start;", 
 }
