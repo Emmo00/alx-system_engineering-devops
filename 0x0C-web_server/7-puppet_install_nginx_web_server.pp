@@ -8,22 +8,7 @@ exec { 'add nginx index':
      command => "echo 'Hello World!' | sudo tee /var/www/html/index.html ; ", 
 }
 
-# Define the Nginx configuration file
-file { '/etc/nginx/sites-available/default':
-  ensure  => file,
-  content => "
-    server {
-      listen 80;
-      server_name _;
-      
-      location /redirect_me {
-        return 301 /;
-      }
-      
-      # Include other Nginx configuration directives as needed
-      
-      # ...
-    }
-  ",
-  notify  => Service['nginx'],
+exec { 'configure redirect nginx': 
+     path    => '/usr/bin', 
+     command => "sudo sed -i \"s/^[^#].*server_name.*/server_name _;\nrewrite ^\/redirect_me \/ permanent;/\" /etc/nginx/sites-available/default ; sudo service nginx start;", 
 }
