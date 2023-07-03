@@ -1,0 +1,14 @@
+#!/bin/bash
+# configure nginx to send custom http header "X-Served-By"
+
+header_name="X-Served-By"
+header_value=`hostname`
+
+config_file="/etc/nginx/sites-available/default"
+
+#add config
+sed -i '/^\s*location\s*\/\s*{/a \ \ \ \ add_header '"$header_name $header_value"';' "$config_file"
+
+nginx -t
+
+service nginx restart
