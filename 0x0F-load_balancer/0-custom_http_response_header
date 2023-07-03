@@ -2,7 +2,7 @@
 # configure nginx to send custom http header "X-Served-By"
 
 header_name="X-Served-By"
-header_value=`hostname`
+header_value=$(hostname)
 
 config_file="/etc/nginx/sites-available/default"
 
