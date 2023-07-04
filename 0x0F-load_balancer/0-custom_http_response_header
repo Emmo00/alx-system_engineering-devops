@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # configure nginx to send custom http header "X-Served-By"
 
+apt-get -y update
+apt-get -y install nginx
+
 header_name="X-Served-By"
 header_value=$(hostname)
 
