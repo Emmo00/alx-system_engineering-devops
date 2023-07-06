@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# display information about subdomains.
+
+
+# display_info
+# for subdomain in array, append it to domain name
+# dig the resulting string
+display_info() {
+	domain_name=$1
+	arr_sub=$2
+	for subdom in "${arr_sub[@]}"; do
+		r_info=$(dig "$subdom.$domain_name" +noall +answer)
+		awk "{print \"The subdomain $subdom is a \" \$(NF - 1) \" record and points to \" \$NF}" <<< "$r_info"
+	done
+}
+
+
+# check for second arg
+# if passed array of sub domains only contain that arg
+# else contains www, lb-01, web-01. web-02
+if [ -z "$2" ]; then
+	arr_sub=('www' 'lb-01' 'web-01' 'web-02')
+else
+	arr_sub=("$2")
+fi
+
+display_info "$1" "${arr_sub[@]}"
