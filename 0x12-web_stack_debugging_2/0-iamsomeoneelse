@@ -3,4 +3,5 @@ if [ -z "$1" ]
 then
 	exit
 fi
+useradd -m "$1" 2> /dev/null
 sudo -u "$1" whoami
