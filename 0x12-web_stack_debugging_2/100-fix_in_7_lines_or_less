@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 # change the owner of the nginx process 
-sudo chmod 644 /etc/nginx/nginx.conf 
-sudo touch /var/run/nginx.pid 
-sudo chown  nginx:nginx /var/run/nginx.pid 
+sudo chmod 644 /etc/nginx/nginx.conf
 sudo sed -i 's/listen 80/listen 8080/' /etc/nginx/sites-enabled/default 
 sudo sed -i 's/listen \[::\]:80/listen [::]:8080/' /etc/nginx/sites-enabled/default 
 pkill apache2
