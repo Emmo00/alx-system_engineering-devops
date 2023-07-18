@@ -6,5 +6,6 @@ sudo touch /var/run/nginx.pid
 sudo chown  nginx:nginx /var/run/nginx.pid
 sudo sed -i 's/listen 80/listen 8080/' /etc/nginx/sites-enabled/default
 sudo sed -i 's/listen \[::\]:80/listen [::]:8080/' /etc/nginx/sites-enabled/default
+pkill apache2
 sudo nginx -t
-sudo -u nginx  nginx
+sudo -u nginx  /usr/sbin/nginx
