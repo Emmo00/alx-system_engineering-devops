@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# change the owner of the nginx process
+sudo chown -R  nginx:nginx /etc/nginx/conf.d
+sudo chmod 644 /etc/nginx/nginx.conf
+sudo touch /var/run/nginx.pid
+sudo chown  nginx:nginx /var/run/nginx.pid
+sudo -u nginx  nginx
