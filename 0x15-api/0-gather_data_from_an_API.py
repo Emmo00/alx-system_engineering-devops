@@ -3,10 +3,9 @@
 import sys
 import requests
 
-user_id = sys.argv[1]
-
 
 def get_completed_tasks(tasks):
+    """get the number of completed tasks"""
     completed = 0
     for task in tasks:
         if task['completed']:
@@ -14,18 +13,20 @@ def get_completed_tasks(tasks):
     return completed
 
 
-user_url = f'https://jsonplaceholder.typicode.com/users/{user_id}'
-tasks_url = f'https://jsonplaceholder.typicode.com/todos?userId={user_id}'
+if __name__ == '__main__':
+    user_id = sys.argv[1]
+    user_url = f'https://jsonplaceholder.typicode.com/users/{user_id}'
+    tasks_url = f'https://jsonplaceholder.typicode.com/todos?userId={user_id}'
 
-user = requests.get(user_url)
-user = user.json()
+    user = requests.get(user_url)
+    user = user.json()
 
-tasks = requests.get(tasks_url)
-tasks = tasks.json()
+    tasks = requests.get(tasks_url)
+    tasks = tasks.json()
 
-print(f'Employee {user["name"]} is done with \
-      tasks({get_completed_tasks(tasks)}/{len(tasks)}):')
+    print(f'Employee {user["name"]} is done with \
+        tasks({get_completed_tasks(tasks)}/{len(tasks)}):')
 
-for task in tasks:
-    if task['completed']:
-        print(f'\t {task["title"]}')
+    for task in tasks:
+        if task['completed']:
+            print(f'\t {task["title"]}')
