@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """returns info about an employee by ID passed as argument"""
-import sys
 import requests
+import sys
 
 
 def get_completed_tasks(tasks):
@@ -24,8 +24,8 @@ if __name__ == '__main__':
     tasks = requests.get(tasks_url)
     tasks = tasks.json()
 
-    print(f'Employee {user["name"]} is done with \
-        tasks({get_completed_tasks(tasks)}/{len(tasks)}):')
+    print(f'Employee {user["name"]} is done with '
+          f'tasks({get_completed_tasks(tasks)}/{len(tasks)}):')
 
     for task in tasks:
         if task['completed']:
