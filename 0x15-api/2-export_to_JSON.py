@@ -16,7 +16,9 @@ if __name__ == '__main__':
     tasks = tasks.json()
 
     data = {}
-    data[f'{user_id}'] = [{'task': task['title'], 'completed': task['completed'], 'username': user['username']} for task in tasks]
+    data[f'{user_id}'] = [{'task': task['title'],
+                          'completed': task['completed'],
+                           'username': user['username']} for task in tasks]
 
     with open(f'{user_id}.json', 'w') as f:
         json.dump(data, f)
