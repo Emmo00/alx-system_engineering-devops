@@ -18,11 +18,8 @@ if __name__ == '__main__':
     user_url = f'https://jsonplaceholder.typicode.com/users/{user_id}'
     tasks_url = f'https://jsonplaceholder.typicode.com/todos?userId={user_id}'
 
-    user = requests.get(user_url)
-    user = user.json()
-
-    tasks = requests.get(tasks_url)
-    tasks = tasks.json()
+    user = requests.get(user_url).json()
+    tasks = requests.get(tasks_url).json()
 
     print(f'Employee {user["name"]} is done with '
           f'tasks({get_completed_tasks(tasks)}/{len(tasks)}):')
