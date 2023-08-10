@@ -36,5 +36,5 @@ def count_words(subreddit, word_list, word_appearance={}, after=None):
     word_appearance.update(count_words(subreddit, word_list, {}, res_after))
     if after:
         return word_appearance
-    for key, value in word_appearance.items():
-        print(key, value)
+    for key, value in sorted(word_appearance.items(), key=lambda x:(x[1], x[0])):
+        print(f'{key}: {value}')
