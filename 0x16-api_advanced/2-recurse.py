@@ -16,7 +16,7 @@ def recurse(subreddit, hot_list=[], after=None):
     if err or not res.get('data') or not res.get('data').get('children'):
         return None
     if not res.get('data').get('after'):
-        return []
-    hot_list = [*hot_list, *res.get('data').get('children'),
-                *recurse(subreddit, hot_list, res.get('data').get('after'))]
+        return [*res.get('data').get('children')]
+    hot_list = [*res.get('data').get('children'),
+                *recurse(subreddit, [], res.get('data').get('after'))]
     return hot_list
