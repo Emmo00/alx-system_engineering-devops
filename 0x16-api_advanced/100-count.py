@@ -3,8 +3,7 @@
 import requests
 
 
-def extract(post_list, word_list):
-    appearance = {}
+def extract(post_list, word_list, appearance):
     for post in post_list:
         for word in word_list:
             word = word.lower()
@@ -31,11 +30,14 @@ def count_words(subreddit, word_list, word_appearance={}, after=None):
         return None
     res_after = res.get('data', {}).get('after')
     if not res_after:
-        return extract(res.get('data').get('children'), word_list)
-    word_appearance = extract(res['data']['children'], word_list)
-    word_appearance.update(count_words(subreddit, word_list, {}, res_after))
+        return extract(res.get('data').get('children'), word_list,
+                       word_appearance)
+    word_appearance.update(extract(res['data']['children'], word_list,
+                           word_appearance))
+    word_appearance.update(count_words(subreddit, word_list, word_appearance,
+                           res_after))
     if after:
         return word_appearance
     for key, value in sorted(word_appearance.items(),
-                             key=lambda x: (x[1], x[0])):
+                             key=lambda x: (-x[1], x[0])):
         print(f'{key}: {value}')
