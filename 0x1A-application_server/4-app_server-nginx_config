@@ -60,7 +60,7 @@ rewrite ^/redirect_me / permanent;
         }
 
         location /api {
-             proxy_pass http://0.0.0.0:5002/api;
+             proxy_pass http://0.0.0.0:5002$request_uri;
         }
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
