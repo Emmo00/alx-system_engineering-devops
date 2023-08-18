@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# upgrade a gunicorn server without downtime
+
+master_pid=$(pgrep gunicorn | head -n 1)
+
+kill -HUP "$master_pid"
